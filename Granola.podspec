@@ -17,5 +17,6 @@ Pod::Spec.new do |s|
   s.source_files     = 'Pod/Classes/**/*'
   s.frameworks       = 'HealthKit'
   s.dependency 'ObjectiveSugar', '~> 1.1'
+  s.dependency 'ResearchKit', '~> 1.3'
 end
 
