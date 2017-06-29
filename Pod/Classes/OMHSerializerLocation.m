@@ -42,7 +42,7 @@
  @return a formatted JSON string containing the sample's data in a format that adheres to the appropriate Open mHealth schema
  */
 
-- (NSString*)jsonForResult:(CLLocation*)sample error:(NSError**)error {
+- (NSString*)jsonForLocation:(CLLocation*)sample error:(NSError**)error {
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[self dictionaryForLocation:sample error:error]
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:error];
