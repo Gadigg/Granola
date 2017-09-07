@@ -18,40 +18,24 @@
 @import HealthKit;
 #import "OMHError.h"
 
-@interface ORKConsent : NSObject
-
-@property(nonnull,strong) NSUUID *consentId;
-@property(nonnull,strong) NSUUID *signatureId;
-@property(strong) NSDate * _Nullable creationDateTime;
-@property(strong) NSString * _Nullable title;
-@property(assign) NSInteger canWithdraw;
-@property(nonnull,strong) NSUUID *surveyId;
-
-- (NSDictionary*_Nonnull)data;
-- (instancetype _Nonnull )initWithData:(NSDictionary*_Nonnull)data;
-
-@end
-
 /**
  Translates HealthKit samples of varying types into JSON representations that conform with Open mHealth schemas.
  */
 @interface OMHSerializer : NSObject
-
-@property(strong) ORKConsent * _Nullable consent;
 
 /**
  Returns a list of the HealthKit type identifiers that can be serialized to Open mHealth curated schemas. These are schemas that are not specific to Granola and are consistent with data points generated across the Open mHealth ecosystem.
  
  @return A list of the HealthKit type identifiers serializable to Open mHealth curated schemas.
  */
-+ (NSArray*_Nonnull)supportedTypeIdentifiersWithOMHSchema;
++ (NSArray*)supportedTypeIdentifiersWithOMHSchema;
 
 /**
  Lists all of the HealthKit type identifiers that are supported by Granola, regardless of whether they use Open mHealth curated schemas or Granola-based generic schemas.
  
  @return A list of all HealthKit type identifiers that are supported by Granola.
  */
-+ (NSArray*_Nonnull)supportedTypeIdentifiers;
++ (NSArray*)supportedTypeIdentifiers;
 
 /**
  Serializes HealthKit samples into Open mHealth compliant JSON data points.
@@ -59,7 +43,7 @@
  @param error An NSError that is passed by reference and can be checked to identify specific errors.
  @return A formatted JSON string containing the sample's data in a format that adheres to the appropriate Open mHealth schema.
  */
-- (NSString*_Nullable)jsonForSample:(HKSample*_Nonnull)sample error:(NSError*_Nullable*_Nullable)error;
+- (NSString*)jsonForSample:(HKSample*)sample;
 
 @end
 

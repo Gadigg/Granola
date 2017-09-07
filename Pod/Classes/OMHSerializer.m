@@ -25,48 +25,6 @@
 + (NSException*)unimplementedException;
 @end
 
-@implementation ORKConsent
-
-- (instancetype _Nonnull )initWithData:(NSDictionary*_Nonnull)data {
-    if (self = [super init]) {
-        _consentId = [NSUUID UUID];
-        _creationDateTime = [NSDate date];
-    }
-    if (data[@"id"]) self.consentId = [[NSUUID alloc] initWithUUIDString: data[@"id"]];
-    if (data[@"signature_id"]) self.signatureId = [[NSUUID alloc] initWithUUIDString: data[@"signature_id"]];
-    if (data[@"survey_id"]) self.surveyId = [[NSUUID alloc] initWithUUIDString: data[@"survey_id"]];
-    if (data[@"creation_date_time"]) self.creationDateTime = [NSDate fromRFC3339String: data[@"creation_date_time"]];
-    if (data[@"title"]) self.title = data[@"title"];
-    if (data[@"can_withdraw"]) self.canWithdraw = [data[@"can_withdraw"] boolValue];
-    return self;
-    
-}
-
-- (instancetype)init {
-    if (self = [super init]) {
-        _consentId = [NSUUID UUID];
-        _creationDateTime = [NSDate date];
-    }
-    return self;
-}
-
-- (NSDictionary*)data {
-    NSAssert(self.signatureId, @"Missing signature id");
-    NSAssert(self.surveyId, @"Missing survey id");
-    NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
-    json[@"id"] = self.consentId.UUIDString.lowercaseString;
-    json[@"signature_id"] = self.signatureId.UUIDString.lowercaseString;
-    json[@"survey_id"] = self.surveyId.UUIDString.lowercaseString;
-
-    if (self.creationDateTime) json[@"creation_date_time"] = [self.creationDateTime RFC3339String];
-    if (self.title) json[@"title"] = self.title;
-    if (self.canWithdraw) json[@"can_withdraw"] = @(1);
-    
-    return json;
-}
-
-@end
-
 
 @implementation OMHSerializer
 
@@ -119,7 +77,7 @@
  @param error an NSError that is passed by reference and can be checked to identify specific errors
  @return a formatted JSON string containing the sample's data in a format that adheres to the appropriate Open mHealth schema
  */
-- (NSString*)jsonForSample:(HKSample*)sample error:(NSError**)error {
+- (NSString*)jsonForSample:(HKSample*)sample {
     NSParameterAssert(sample);
     // first, verify we support the sample type
     NSArray* supportedTypeIdentifiers = [[self class] supportedTypeIdentifiers];
@@ -129,14 +87,14 @@
         serializerClassName = [OMHHealthKitConstantsMapper allSupportedTypeIdentifiersToClasses][sampleTypeIdentifier];
     }
     else{
-        if (error) {
-            NSString* errorMessage =
-            [NSString stringWithFormat: @"Unsupported HKSample type: %@", sampleTypeIdentifier];
-            NSDictionary* userInfo = @{ NSLocalizedDescriptionKey : errorMessage };
-            *error = [NSError errorWithDomain: OMHErrorDomain
-                                         code: OMHErrorCodeUnsupportedType
-                                     userInfo: userInfo];
-        }
+//        if (error) {
+//            NSString* errorMessage =
+//            [NSString stringWithFormat: @"Unsupported HKSample type: %@", sampleTypeIdentifier];
+//            NSDictionary* userInfo = @{ NSLocalizedDescriptionKey : errorMessage };
+//            *error = [NSError errorWithDomain: OMHErrorDomain
+//                                         code: OMHErrorCodeUnsupportedType
+//                                     userInfo: userInfo];
+//        }
         return nil;
     }
     // if we support it, select appropriate subclass for sample
@@ -151,14 +109,14 @@
     }
     Class serializerClass = NSClassFromString(serializerClassName);
     // subclass verifies it supports sample's values
-    if (![serializerClass canSerialize:sample error:error]) {
+    if (![serializerClass canSerialize:sample error:nil]) {
         return nil;
     }
     // instantiate a serializer
     OMHSerializer* serializer = [[serializerClass alloc] initWithSample:sample];
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[serializer data]
                                     options:NSJSONWritingPrettyPrinted
-                                      error:error];
+                                      error:nil];
     if (!jsonData) {
         return nil; // return early if JSON serialization failed
     }
@@ -235,23 +193,19 @@
     NSMutableDictionary *serializedBodyDictionaryWithMetadata = [NSMutableDictionary dictionaryWithDictionary:serializedBodyDictionaryWithoutMetadata];
     [serializedBodyDictionaryWithMetadata addEntriesFromDictionary:[OMHSerializer serializeMetadataArray:self.sample.metadata]];
     
-    NSMutableDictionary *json = [NSMutableDictionary dictionaryWithDictionary: @{
-        @"header": [NSMutableDictionary dictionaryWithDictionary: @{
-            @"id": self.sample.UUID.UUIDString,
-            @"creation_date_time": [self.sample.startDate RFC3339String],
-            @"schema_id": @{
-                @"namespace": [self schemaNamespace],
-                @"name": [self schemaName],
-                @"version": [self schemaVersion],
-            },
-        }],
-        @"body": serializedBodyDictionaryWithMetadata
-    }];
-    if (self.consent) {
-        json[@"header"][@"consent"] = [self.consent data];
-    }
+    return @{
+             @"header": @{
+                     @"id": self.sample.UUID.UUIDString,
+                     @"creation_date_time": [self.sample.startDate RFC3339String],
+                     @"schema_id": @{
+                             @"namespace": [self schemaNamespace],
+                             @"name": [self schemaName],
+                             @"version": [self schemaVersion]
+                             },
+                     },
+             @"body":serializedBodyDictionaryWithMetadata
+             };
     
-    return json;
 }
 
 - (NSString*)schemaName {
