@@ -138,11 +138,7 @@
         case HKWorkoutActivityTypeOther:
             return @"HKWorkoutActivityTypeOther";
         default:{
-            NSException *e = [NSException
-                              exceptionWithName:@"HKWorkoutActivityTypeInvalidValue"
-                              reason:@"HKWorkoutActivityType can only have a value from the HKWorkoutActivityType enum"
-                              userInfo:nil];
-            @throw e;
+            return @"";
         }
     }
 }
@@ -156,11 +152,7 @@
             return @"Asleep";
             break;
         default:{
-            NSException *e = [NSException
-                              exceptionWithName:@"HKCategoryValueSleepAnalysisInvalidValue"
-                              reason:@"HKCategoryValueSleepAnalysis can only have a HKCategoryValueSleepAnalysisInBed or HKCategoryValueSleepAnalysisAsleep value"
-                              userInfo:nil];
-            @throw e;
+            return @"";
         }
     }
 }
@@ -172,11 +164,7 @@
         case HKCategoryValueAppleStandHourStood:
             return @"Standing";
         default:{
-            NSException *e = [NSException
-                              exceptionWithName:@"HKCategoryValueAppleStandHourInvalidValue"
-                              reason:@"HKCategoryValueAppleStandHour can only have a HKCategoryValueAppleStandHourIdle or HKCategoryValueAppleStandHourStood value"
-                              userInfo:nil];
-            @throw e;
+            return @"";
         }
     }
 }
@@ -194,11 +182,7 @@
         case HKCategoryValueCervicalMucusQualityWatery:
             return @"Watery";
         default:{
-            NSException *e = [NSException
-                              exceptionWithName:@"HKCategoryValueCervicalMucusQualityInvalidValue"
-                              reason:@"HKCategoryValueCervicalMucusQuality can only have a value specified in the HKCategoryValueCervicalMucusQuality enum"
-                              userInfo:nil];
-            @throw e;
+            return @"";
         }
     }
 }
@@ -214,11 +198,7 @@
         case HKCategoryValueMenstrualFlowHeavy:
             return @"Heavy";
         default:{
-            NSException *e = [NSException
-                              exceptionWithName:@"HKCategoryValueMenstrualFlowInvalidValue"
-                              reason:@"HKCategoryValueMenstrualFlow can only have a value specified in the HKCategoryValueMenstrualFlow enum"
-                              userInfo:nil];
-            @throw e;
+            return @"";
         }
     }
 }
@@ -232,11 +212,7 @@
         case HKCategoryValueOvulationTestResultIndeterminate:
             return @"Indeterminate";
         default:{
-            NSException *e = [NSException
-                              exceptionWithName:@"HKCategoryValueOvulationTestResultInvalidValue"
-                              reason:@"HKCategoryValueOvulationTestResult can only have a value specified in the HKCategoryValueOvulationTestResult enum"
-                              userInfo:nil];
-            @throw e;
+            return @"";
         }
     }
 }
@@ -254,7 +230,7 @@
     [allTypeIdsToClasses addEntriesFromDictionary:[self allSupportedQuantityTypeIdentifiersToClass]];
     
     return allTypeIdsToClasses;
-        
+    
 }
 
 + (NSDictionary*)allSupportedCategoryTypeIdentifiersToClasses {
@@ -262,17 +238,17 @@
     static NSDictionary* allCategoryTypeIdsToClasses = nil;
     if (allCategoryTypeIdsToClasses == nil) {
         allCategoryTypeIdsToClasses = @{
-                                HKCategoryTypeIdentifierSleepAnalysis : @"OMHSerializerSleepAnalysis", //Samples with Asleep value use this serializer, samples with InBed value use generic category serializer
-                                HKCategoryTypeIdentifierAppleStandHour : @"OMHSerializerGenericCategorySample",
-                                HKCategoryTypeIdentifierCervicalMucusQuality : @"OMHSerializerGenericCategorySample",
-                                HKCategoryTypeIdentifierIntermenstrualBleeding: @"OMHSerializerGenericCategorySample",
-                                HKCategoryTypeIdentifierMenstrualFlow: @"OMHSerializerGenericCategorySample",
-                                HKCategoryTypeIdentifierOvulationTestResult: @"OMHSerializerGenericCategorySample",
-                                HKCategoryTypeIdentifierSexualActivity: @"OMHSerializerGenericCategorySample"
-                                };
+                                        HKCategoryTypeIdentifierSleepAnalysis : @"OMHSerializerSleepAnalysis", //Samples with Asleep value use this serializer, samples with InBed value use generic category serializer
+                                        HKCategoryTypeIdentifierAppleStandHour : @"OMHSerializerGenericCategorySample",
+                                        HKCategoryTypeIdentifierCervicalMucusQuality : @"OMHSerializerGenericCategorySample",
+                                        HKCategoryTypeIdentifierIntermenstrualBleeding: @"OMHSerializerGenericCategorySample",
+                                        HKCategoryTypeIdentifierMenstrualFlow: @"OMHSerializerGenericCategorySample",
+                                        HKCategoryTypeIdentifierOvulationTestResult: @"OMHSerializerGenericCategorySample",
+                                        HKCategoryTypeIdentifierSexualActivity: @"OMHSerializerGenericCategorySample"
+                                        };
     }
     return allCategoryTypeIdsToClasses;
-
+    
 }
 
 + (NSDictionary*)allSupportedCorrelationTypeIdentifiersToClass {
@@ -282,7 +258,7 @@
         allCorrelationTypeIdsToClasses = @{
                                            HKCorrelationTypeIdentifierBloodPressure: @"OMHSerializerBloodPressure",
                                            HKCorrelationTypeIdentifierFood: @"OMHSerializerGenericCorrelation"
-                                        };
+                                           };
     }
     return allCorrelationTypeIdsToClasses;
 }
@@ -366,4 +342,3 @@
 }
 
 @end
-

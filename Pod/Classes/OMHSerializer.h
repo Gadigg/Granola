@@ -43,7 +43,7 @@
  @param error An NSError that is passed by reference and can be checked to identify specific errors.
  @return A formatted JSON string containing the sample's data in a format that adheres to the appropriate Open mHealth schema.
  */
-- (NSString*)jsonForSample:(HKSample*)sample error:(NSError**)error;
+- (NSString*)jsonForSample:(HKSample*)sample;
 
 @end
 

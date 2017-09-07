@@ -1,8 +1,6 @@
- /*
+/*
  * Copyright 2016 Open mHealth
  *
- * Updated by Gadi
- * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,23 +32,23 @@
     static NSArray* OMHSchemaTypeIds = nil;
     if(OMHSchemaTypeIds == nil){
         OMHSchemaTypeIds = @[
-                                      HKQuantityTypeIdentifierHeight,
-                                      HKQuantityTypeIdentifierBodyMass,
-                                      HKQuantityTypeIdentifierStepCount,
-                                      HKQuantityTypeIdentifierHeartRate,
-                                      HKQuantityTypeIdentifierBloodGlucose,
-                                      HKQuantityTypeIdentifierActiveEnergyBurned,
-                                      HKQuantityTypeIdentifierBasalEnergyBurned,
-                                      HKQuantityTypeIdentifierBodyMassIndex,
-                                      HKQuantityTypeIdentifierBodyFatPercentage,
-                                      HKQuantityTypeIdentifierOxygenSaturation,
-                                      HKQuantityTypeIdentifierRespiratoryRate,
-                                      HKQuantityTypeIdentifierBodyTemperature,
-                                      HKQuantityTypeIdentifierBasalBodyTemperature,
-                                      HKCategoryTypeIdentifierSleepAnalysis, //Samples with Asleep value use this serializer, samples with InBed value use generic category serializer
-                                      HKCorrelationTypeIdentifierBloodPressure
-                                      ];
-    
+                             HKQuantityTypeIdentifierHeight,
+                             HKQuantityTypeIdentifierBodyMass,
+                             HKQuantityTypeIdentifierStepCount,
+                             HKQuantityTypeIdentifierHeartRate,
+                             HKQuantityTypeIdentifierBloodGlucose,
+                             HKQuantityTypeIdentifierActiveEnergyBurned,
+                             HKQuantityTypeIdentifierBasalEnergyBurned,
+                             HKQuantityTypeIdentifierBodyMassIndex,
+                             HKQuantityTypeIdentifierBodyFatPercentage,
+                             HKQuantityTypeIdentifierOxygenSaturation,
+                             HKQuantityTypeIdentifierRespiratoryRate,
+                             HKQuantityTypeIdentifierBodyTemperature,
+                             HKQuantityTypeIdentifierBasalBodyTemperature,
+                             HKCategoryTypeIdentifierSleepAnalysis, //Samples with Asleep value use this serializer, samples with InBed value use generic category serializer
+                             HKCorrelationTypeIdentifierBloodPressure
+                             ];
+        
     }
     return OMHSchemaTypeIds;
 }
@@ -79,7 +77,7 @@
  @param error an NSError that is passed by reference and can be checked to identify specific errors
  @return a formatted JSON string containing the sample's data in a format that adheres to the appropriate Open mHealth schema
  */
-- (NSString*)jsonForSample:(HKSample*)sample error:(NSError**)error {
+- (NSString*)jsonForSample:(HKSample*)sample {
     NSParameterAssert(sample);
     // first, verify we support the sample type
     NSArray* supportedTypeIdentifiers = [[self class] supportedTypeIdentifiers];
@@ -89,14 +87,14 @@
         serializerClassName = [OMHHealthKitConstantsMapper allSupportedTypeIdentifiersToClasses][sampleTypeIdentifier];
     }
     else{
-        if (error) {
-            NSString* errorMessage =
-            [NSString stringWithFormat: @"Unsupported HKSample type: %@", sampleTypeIdentifier];
-            NSDictionary* userInfo = @{ NSLocalizedDescriptionKey : errorMessage };
-            *error = [NSError errorWithDomain: OMHErrorDomain
-                                         code: OMHErrorCodeUnsupportedType
-                                     userInfo: userInfo];
-        }
+        //        if (error) {
+        //            NSString* errorMessage =
+        //            [NSString stringWithFormat: @"Unsupported HKSample type: %@", sampleTypeIdentifier];
+        //            NSDictionary* userInfo = @{ NSLocalizedDescriptionKey : errorMessage };
+        //            *error = [NSError errorWithDomain: OMHErrorDomain
+        //                                         code: OMHErrorCodeUnsupportedType
+        //                                     userInfo: userInfo];
+        //        }
         return nil;
     }
     // if we support it, select appropriate subclass for sample
@@ -111,14 +109,14 @@
     }
     Class serializerClass = NSClassFromString(serializerClassName);
     // subclass verifies it supports sample's values
-    if (![serializerClass canSerialize:sample error:error]) {
+    if (![serializerClass canSerialize:sample error:nil]) {
         return nil;
     }
     // instantiate a serializer
     OMHSerializer* serializer = [[serializerClass alloc] initWithSample:sample];
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[serializer data]
-                                    options:NSJSONWritingPrettyPrinted
-                                      error:error];
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:nil];
     if (!jsonData) {
         return nil; // return early if JSON serialization failed
     }
@@ -500,19 +498,19 @@
     
     
     NSMutableDictionary* serializedValues = [NSMutableDictionary dictionaryWithDictionary:@{
-             @"body_temperature": @{
-                     @"value": [NSNumber numberWithDouble:value],
-                     @"unit": @"C"
-                     },
-             @"effective_time_frame": [self populateTimeFrameProperty:self.sample.startDate endDate:self.sample.endDate]
-             }];
+                                                                                            @"body_temperature": @{
+                                                                                                    @"value": [NSNumber numberWithDouble:value],
+                                                                                                    @"unit": @"C"
+                                                                                                    },
+                                                                                            @"effective_time_frame": [self populateTimeFrameProperty:self.sample.startDate endDate:self.sample.endDate]
+                                                                                            }];
     
     if([self.sample.sampleType.description isEqualToString:HKQuantityTypeIdentifierBasalBodyTemperature]) {
         BOOL userEntered = (BOOL)[self.sample.metadata objectForKey:HKMetadataKeyWasUserEntered];
         if(userEntered == true){
             /*  Basal body temperature should be taken during sleep or immediately upon waking. It is not possible to tell whether a
-                measurement was taken during sleep, however if the measurement was self-entered by the user then we assume they took that 
-                measurement first thing in the morning, at waking. */
+             measurement was taken during sleep, however if the measurement was self-entered by the user then we assume they took that
+             measurement first thing in the morning, at waking. */
             [serializedValues setObject:@"on waking" forKey:@"temporal_relationship_to_sleep"];
         }
     }
@@ -643,7 +641,7 @@
 
 
 /**
- This serializer maps data from HKCorrelationTypeIdentifierBloodPressure samples to JSON that conforms to the Open mHealth [blood-pressure schema](http://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_blood-pressure). 
+ This serializer maps data from HKCorrelationTypeIdentifierBloodPressure samples to JSON that conforms to the Open mHealth [blood-pressure schema](http://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_blood-pressure).
  */
 @interface OMHSerializerBloodPressure : OMHSerializer; @end;
 @implementation OMHSerializerBloodPressure
@@ -746,7 +744,7 @@
 @end
 
 /**
- This serializer maps data from HKQuantitySamples to JSON that conforms to the generic, Granola-specific [hk-quantity-sample schema](http://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/granola_hk-quantity-sample). 
+ This serializer maps data from HKQuantitySamples to JSON that conforms to the generic, Granola-specific [hk-quantity-sample schema](http://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/granola_hk-quantity-sample).
  
  This serializer is used for all quantity types that are not supported by Open mHealth curated schemas. The [supportedTypeIdentifiersWithOMHSchema]([OMHSerializer supportedTypeIdentifiersWithOMHSchema]) method provides a list of schemas that _are_ supported by Open mHealth curated schemas.
  */
@@ -902,8 +900,8 @@
     }
     else if ([categoryType.description isEqualToString:HKCategoryTypeIdentifierIntermenstrualBleeding]) {
         /*  Samples of this type represent the presence of intermenstrual bleeding and as such does not have a categorical value. HealthKit
-            specifies that the value field for this type is "HKCategoryValueNotApplicable" which is a nonsensical value, so we use the name 
-            of the represented measure as the value. */
+         specifies that the value field for this type is "HKCategoryValueNotApplicable" which is a nonsensical value, so we use the name
+         of the represented measure as the value. */
         return @"Intermenstrual bleeding";
     }
     else if ([categoryType.description isEqualToString:HKCategoryTypeIdentifierMenstrualFlow]) {
@@ -913,10 +911,10 @@
         return [OMHHealthKitConstantsMapper stringForHKOvulationTestResultValue:(int)categoryValue];
     }
     else if ([categoryType.description isEqualToString:HKCategoryTypeIdentifierSexualActivity]) {
-        /*  Samples of this type represent times during which sexual activity occurred. This means that during the time frame of each 
-            sample, sexual activity was occurring. As such, this measure does not have a categorical value. HealthKit specifies that the 
-            value field for this type is "HKCategoryValueNotApplicable" which is a nonsensical value, so we use the name of the represented 
-            measure as the value. */
+        /*  Samples of this type represent times during which sexual activity occurred. This means that during the time frame of each
+         sample, sexual activity was occurring. As such, this measure does not have a categorical value. HealthKit specifies that the
+         value field for this type is "HKCategoryValueNotApplicable" which is a nonsensical value, so we use the name of the represented
+         measure as the value. */
         return @"Sexual activity";
     }
     else{
@@ -1095,4 +1093,3 @@
     return @"granola";
 }
 @end
-
