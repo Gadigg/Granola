@@ -18,16 +18,16 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* OMHSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* OMHSerializerTests.m */; };
+		98BC5793CF3263CC80FFBA4D /* Pods_Granola.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32ECC067CB6D468A08738C6D /* Pods_Granola.framework */; };
 		9E272AB11ADEFF1B007DE4ED /* OMHSampleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E272AB01ADEFF1B007DE4ED /* OMHSampleFactory.m */; };
 		9E272AB41ADF523F007DE4ED /* OMHSchemaStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E272AB31ADF523F007DE4ED /* OMHSchemaStore.m */; };
 		9ECA505C1AD60A3000E367CA /* schema in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA505B1AD60A3000E367CA /* schema */; };
-		F8FEF4241A43B7BFE271ADD7 /* libPods-Granola.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CABD26178AD457AEB783167 /* libPods-Granola.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0713970833C99FFE3A26765F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		0CABD26178AD457AEB783167 /* libPods-Granola.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Granola.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1497BA18A434AE1495648DE8 /* Granola.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Granola.podspec; path = ../Granola.podspec; sourceTree = "<group>"; };
+		26C3DC0E5EE5E716A2B160F2 /* Pods-Granola.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Granola.release.xcconfig"; path = "Pods/Target Support Files/Pods-Granola/Pods-Granola.release.xcconfig"; sourceTree = "<group>"; };
 		2E945AD11B753D1400A1FEB0 /* NSDate+RFC3339Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+RFC3339Tests.m"; sourceTree = "<group>"; };
 		2EAAF0341C44CB1300897920 /* Granola Test Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Granola Test Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EAAF0361C44CB1300897920 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +36,7 @@
 		2EAAF03D1C44CB1300897920 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EAAF0401C44CB1300897920 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2EAAF0421C44CB1300897920 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32ECC067CB6D468A08738C6D /* Pods_Granola.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Granola.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* Granola.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Granola.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -46,15 +47,14 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* OMHSerializerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OMHSerializerTests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		60AD454118C72A45376F1B87 /* Pods-Granola.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Granola.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Granola/Pods-Granola.debug.xcconfig"; sourceTree = "<group>"; };
 		9E272AAF1ADEFF1B007DE4ED /* OMHSampleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMHSampleFactory.h; sourceTree = "<group>"; };
 		9E272AB01ADEFF1B007DE4ED /* OMHSampleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMHSampleFactory.m; sourceTree = "<group>"; };
 		9E272AB21ADF523F007DE4ED /* OMHSchemaStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMHSchemaStore.h; sourceTree = "<group>"; };
 		9E272AB31ADF523F007DE4ED /* OMHSchemaStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OMHSchemaStore.m; sourceTree = "<group>"; };
 		9ECA505B1AD60A3000E367CA /* schema */ = {isa = PBXFileReference; lastKnownFileType = folder; name = schema; path = "omh-schemas/schema"; sourceTree = "<group>"; };
 		9EDEA5811ADB0B5200D3F174 /* HKObject+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HKObject+Private.h"; sourceTree = "<group>"; };
-		AD7D73655EC87F9772FA4779 /* Pods-Granola.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Granola.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Granola/Pods-Granola.debug.xcconfig"; sourceTree = "<group>"; };
 		EF857A4BFD07184BC663D020 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		F9F510F403C68D61B5084DE9 /* Pods-Granola.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Granola.release.xcconfig"; path = "Pods/Target Support Files/Pods-Granola/Pods-Granola.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,13 +72,22 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				F8FEF4241A43B7BFE271ADD7 /* libPods-Granola.a in Frameworks */,
+				98BC5793CF3263CC80FFBA4D /* Pods_Granola.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F8C05729AD2DA815A2E8B05 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				60AD454118C72A45376F1B87 /* Pods-Granola.debug.xcconfig */,
+				26C3DC0E5EE5E716A2B160F2 /* Pods-Granola.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		2EAAF0351C44CB1300897920 /* Granola Test Swift */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,15 +101,6 @@
 			path = "Granola Test Swift";
 			sourceTree = "<group>";
 		};
-		3CBAC3C90B6EE47B545DBAFB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AD7D73655EC87F9772FA4779 /* Pods-Granola.debug.xcconfig */,
-				F9F510F403C68D61B5084DE9 /* Pods-Granola.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -109,7 +109,7 @@
 				2EAAF0351C44CB1300897920 /* Granola Test Swift */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				3CBAC3C90B6EE47B545DBAFB /* Pods */,
+				1F8C05729AD2DA815A2E8B05 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,7 +130,7 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				0CABD26178AD457AEB783167 /* libPods-Granola.a */,
+				32ECC067CB6D468A08738C6D /* Pods_Granola.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -195,12 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "Granola" */;
 			buildPhases = (
-				4C80BEBFD91B74FEFF48262F /* Check Pods Manifest.lock */,
+				24A69E8B51A2A1382596A9D2 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				73CB77E6952EC974E87629D9 /* Copy Pods Resources */,
-				7600D7E921862BC74D05369B /* Embed Pods Frameworks */,
+				E878519CACD9C5620D3EC4EA /* [CP] Embed Pods Frameworks */,
+				AFDEBC098BA031799FB70C2E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -272,29 +272,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4C80BEBFD91B74FEFF48262F /* Check Pods Manifest.lock */ = {
+		24A69E8B51A2A1382596A9D2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Granola-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		73CB77E6952EC974E87629D9 /* Copy Pods Resources */ = {
+		AFDEBC098BA031799FB70C2E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,15 +305,26 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Granola/Pods-Granola-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7600D7E921862BC74D05369B /* Embed Pods Frameworks */ = {
+		E878519CACD9C5620D3EC4EA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Granola/Pods-Granola-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
+				"${BUILT_PRODUCTS_DIR}/Granola/Granola.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectiveSugar/ObjectiveSugar.framework",
+				"${BUILT_PRODUCTS_DIR}/Specta/Specta.framework",
+				"${BUILT_PRODUCTS_DIR}/VVJSONSchemaValidation/VVJSONSchemaValidation.framework",
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Granola.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectiveSugar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Specta.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VVJSONSchemaValidation.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -481,13 +495,9 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD7D73655EC87F9772FA4779 /* Pods-Granola.debug.xcconfig */;
+			baseConfigurationReference = 60AD454118C72A45376F1B87 /* Pods-Granola.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -503,13 +513,9 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9F510F403C68D61B5084DE9 /* Pods-Granola.release.xcconfig */;
+			baseConfigurationReference = 26C3DC0E5EE5E716A2B160F2 /* Pods-Granola.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
@@ -529,6 +535,7 @@
 				2EAAF0451C44CB1300897920 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6003F585195388D10070C39A /* Build configuration list for PBXProject "Granola" */ = {
 			isa = XCConfigurationList;
