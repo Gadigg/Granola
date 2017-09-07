@@ -155,7 +155,7 @@ void (^logTypeSupportTableString)() = ^{
 id (^deserializedJsonForSample)(HKSample* sample) =
 ^(HKSample* sample){
     OMHSerializer* instance = [OMHSerializer new];
-    NSString* json = [instance jsonForSample:sample error:nil];
+    NSString* json = [instance jsonForSample:sample];
     NSData* data = [json dataUsingEncoding:NSUTF8StringEncoding];
     return [NSJSONSerialization JSONObjectWithData:data
                                            options:0
@@ -208,7 +208,7 @@ describe(@"OMHSerializer", ^{
         });
         it(@"without sample raises exception", ^{
             expect(^{
-                [instance jsonForSample:nil error:nil];
+                [instance jsonForSample:nil];
             }).to.raise(NSInternalInconsistencyException);
         });
         
@@ -218,7 +218,7 @@ describe(@"OMHSerializer", ^{
                 it(@"and supported values returns json result without error", ^{
                     NSError* error = nil;
                     HKSample* sample = [OMHSampleFactory typeIdentifier:typeIdentifier];
-                    json = [instance jsonForSample:sample error:&error];
+                    json = [instance jsonForSample:sample];
                     expect(json).notTo.beNil();
                     expect(error).to.beNil();
                 });
@@ -830,7 +830,7 @@ describe(HKCorrelationTypeIdentifierBloodPressure, ^{
                                                     @"end": sampledAt,
                                                     @"objects": objects }];
                 instance = [OMHSerializer new];
-                json = [instance jsonForSample:sample error:&error];
+                json = [instance jsonForSample:sample];
             });
             it(@"returns nil", ^{
                 expect(json).to.beNil();

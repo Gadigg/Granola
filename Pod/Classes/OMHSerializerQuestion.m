@@ -108,7 +108,7 @@
     }
     // instantiate a serializer
     OMHSerializerQuestion* serializer = [[serializerClass alloc] initWithResult:sample];
-    serializer.consent = self.consent;
+//    serializer.consent = self.consent;
     return [serializer data];
 }
 
