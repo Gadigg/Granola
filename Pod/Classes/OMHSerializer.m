@@ -114,9 +114,15 @@
     }
     // instantiate a serializer
     OMHSerializer* serializer = [[serializerClass alloc] initWithSample:sample];
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[serializer data]
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:nil];
+    NSData* jsonData = nil;
+    
+    @try {
+        jsonData = [NSJSONSerialization dataWithJSONObject:[serializer data]
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    } @catch  (NSException *exception) {
+        return nil;
+    }
     if (!jsonData) {
         return nil; // return early if JSON serialization failed
     }
