@@ -336,7 +336,9 @@
                                         HKQuantityTypeIdentifierRespiratoryRate: @"OMHSerializerRespiratoryRate",
                                         HKQuantityTypeIdentifierStepCount : @"OMHSerializerStepCount",
                                         HKQuantityTypeIdentifierUVExposure: @"OMHSerializerGenericQuantitySample",
-                                        HKQuantityTypeIdentifierAppleExerciseTime: @"OMHSerializerGenericQuantitySample"
+                                        HKQuantityTypeIdentifierAppleExerciseTime: @"OMHSerializerGenericQuantitySample",
+                                        HKQuantityTypeIdentifierPushCount:@"OMHSerializerGenericQuantitySample",
+                                        HKQuantityTypeIdentifierInsulinDelivery: @"OMHSerializerGenericQuantitySample"
                                         };
     }
     return allQuantityTypeIdsToClasses;
