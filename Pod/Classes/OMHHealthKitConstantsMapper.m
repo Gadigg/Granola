@@ -343,15 +343,17 @@
     }
     
     if (@available(iOS 9.3, *)) {
-        [allQuantityTypeIdsToClasses setObject:HKQuantityTypeIdentifierAppleExerciseTime forKey:@"OMHSerializerGenericQuantitySample"];
+        [allQuantityTypeIdsToClasses setObject:@"OMHSerializerGenericQuantitySample" forKey:HKQuantityTypeIdentifierAppleExerciseTime];
     }
     
     if (@available(iOS 10, *)) {
-        [allQuantityTypeIdsToClasses setObject:HKQuantityTypeIdentifierPushCount forKey:@"OMHSerializerGenericQuantitySample"];
+        [allQuantityTypeIdsToClasses setObject:@"OMHSerializerGenericQuantitySample" forKey:HKQuantityTypeIdentifierPushCount];
     }
     
     if (@available(iOS 11, *)) {
-        [allQuantityTypeIdsToClasses setObject:HKQuantityTypeIdentifierInsulinDelivery forKey:@"OMHSerializerGenericQuantitySample"];
+        [allQuantityTypeIdsToClasses setObject:@"OMHSerializerGenericQuantitySample" forKey:HKQuantityTypeIdentifierInsulinDelivery];
+        [allQuantityTypeIdsToClasses setObject:@"OMHSerializerGenericQuantitySample" forKey:HKQuantityTypeIdentifierVO2Max];
+        [allQuantityTypeIdsToClasses setObject:@"OMHSerializerGenericQuantitySample" forKey:HKQuantityTypeIdentifierHeartRateVariabilitySDNN];
     }
     return allQuantityTypeIdsToClasses;
 }
